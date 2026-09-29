@@ -1,1 +1,153 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rook</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: #fff;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: #1b1b1b;
+      padding: 18px;
+      text-align: center;
+      border-bottom: 1px solid #333;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    header p {
+      margin: 5px 0 0;
+      color: #aaa;
+      font-size: 13px;
+    }
+
+    #chat {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .message {
+      max-width: 85%;
+      padding: 12px 15px;
+      border-radius: 16px;
+      line-height: 1.4;
+    }
+
+    .rook {
+      align-self: flex-start;
+      background: #292929;
+    }
+
+    .user {
+      align-self: flex-end;
+      background: #444;
+    }
+
+    .input-area {
+      display: flex;
+      padding: 12px;
+      background: #1b1b1b;
+      border-top: 1px solid #333;
+      gap: 8px;
+    }
+
+    input {
+      flex: 1;
+      padding: 13px;
+      border: none;
+      border-radius: 12px;
+      background: #292929;
+      color: white;
+      outline: none;
+    }
+
+    button {
+      border: none;
+      border-radius: 12px;
+      padding: 0 18px;
+      background: white;
+      color: black;
+      font-weight: bold;
+    }
+
+    button:active {
+      transform: scale(0.96);
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>♟ Rook</h1>
+    <p>Your AI. Your rules.</p>
+  </header>
+
+  <div id="chat">
+    <div class="message rook">
+      I'm Rook. 👋<br><br>
+      The face is here. The brain comes next.
+    </div>
+  </div>
+
+  <div class="input-area">
+    <input id="messageInput" type="text" placeholder="Talk to Rook...">
+    <button onclick="sendMessage()">Send</button>
+  </div>
+
+  <script>
+    function sendMessage() {
+      const input = document.getElementById("messageInput");
+      const chat = document.getElementById("chat");
+
+      const message = input.value.trim();
+
+      if (!message) return;
+
+      const userMessage = document.createElement("div");
+      userMessage.className = "message user";
+      userMessage.textContent = message;
+
+      chat.appendChild(userMessage);
+
+      input.value = "";
+
+      setTimeout(() => {
+        const rookMessage = document.createElement("div");
+        rookMessage.className = "message rook";
+
+        rookMessage.textContent =
+          "Message received. My proper brain isn't connected yet. We're building this thing one brick at a time. 😉";
+
+        chat.appendChild(rookMessage);
+        chat.scrollTop = chat.scrollHeight;
+      }, 500);
+
+      chat.scrollTop = chat.scrollHeight;
+    }
+  </script>
+
+</body>
+</html>
